@@ -1,0 +1,16 @@
+[Unit]
+Description=My Web App Task Tracker
+After=network.target postgresql.service
+
+[Service]
+
+User=app
+Group=app
+WorkingDirectory=/opt/mywebapp
+Environment="PATH=/opt/mywebapp/venv/bin"
+ExecStartPre=/opt/mywebapp/venv/bin/python3 /opt/mywebapp/app.py --migrate-only 
+ExecStart=/opt/mywebapp/venv/bin/python3 /opt/mywebapp/app.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

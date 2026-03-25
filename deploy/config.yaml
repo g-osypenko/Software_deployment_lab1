@@ -1,0 +1,7 @@
+db:
+  host: "127.0.0.1"
+  database: "mywebapp_db"
+  user: "mywebapp_user"
+  password: "securepassword" 
+app:
+  [cite_start]port: 5000 
