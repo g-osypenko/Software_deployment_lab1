@@ -1,7 +1,9 @@
+cat <<EOF | sudo tee /etc/mywebapp/config.yaml
 db:
   host: "127.0.0.1"
   database: "mywebapp_db"
   user: "mywebapp_user"
-  password: "securepassword" 
+  password: "securepassword"
 app:
-  [cite_start]port: 5000 
+  port: 5000
+EOF
