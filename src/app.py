@@ -1,3 +1,4 @@
+import sys
 import yaml
 from flask import Flask, request, jsonify, render_template_string
 from typing import Any, Dict, Union
@@ -5,7 +6,7 @@ from database import TaskDatabase
 
 app = Flask(__name__)
 CONFIG_PATH = "/etc/mywebapp/config.yaml"
-
+ 
 def load_config() -> Dict[str, Any]:
     with open(CONFIG_PATH, "r") as f:
         return yaml.safe_load(f)
@@ -66,5 +67,10 @@ def ready():
     return ("OK", 200) if db.is_healthy() else ("DB connection failed", 500)
 
 if __name__ == '__main__':
-    db.init_db() # Виконання міграції перед запуском 
+    if len(sys.argv) > 1 and sys.argv[1] == '--migrate-only':
+        db.init_db()
+        print("Migrations completed successfully.")
+        sys.exit(0)
+        
+    db.init_db()
     app.run(host='127.0.0.1', port=config['app']['port'])

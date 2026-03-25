@@ -2,7 +2,7 @@ set -e
 
 echo ">>> Installing system packages..."
 sudo apt update
-sudo apt install -y nginx postgresql postgresql-contrib python3-pip python3-venv libpq-dev yaml-cpp
+sudo apt install -y nginx postgresql postgresql-contrib python3-pip python3-venv libpq-dev 
 
 echo ">>> Creating users..."
 sudo useradd -m -s /bin/bash student || true
